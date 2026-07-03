@@ -1,7 +1,7 @@
 #include<string>
 #include<vector>
 #include<unordered_set>
-#include<trie_node.hpp>
+#include "trie_node.hpp"
 
 class Router{
     public:
@@ -15,7 +15,7 @@ class Router{
     private:
         TrieNode* root;
         std::vector<std::string> split(const std::string &topic);
-        void insert(const std::string &topic, int subscriber);
-        void remove(const std::string &topic, int subscriber);
+        void insert(std::vector<std::string> &topic, int subscriber);
+        void remove(std::vector<std::string> &topic, int subscriber);
         void dfs(TrieNode* node, int index, std::vector<std::string> &tokens, std::unordered_set<int> &result);
 };
