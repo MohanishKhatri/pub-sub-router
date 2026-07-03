@@ -3,13 +3,13 @@
 
 int main(){
     Router* router = new Router();
-    router->subscribe("sports.*", 1);
+    router->subscribe("sports.#", 1);
     // router->subscribe("sports.basketball", 2);
     // router->unsubscribe("sports.football", 10);
     // router->subscribe("sports.volleyball", 3);
     
     // router->subscribe("sports", 4);
-    auto it = router->publish("sports.football");
+    auto it = router->publish("sports");
     for(auto i : it){
         std::cout << i << " ";
     }

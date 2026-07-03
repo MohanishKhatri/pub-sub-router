@@ -10,3 +10,4 @@ A Trie-based topic routing engine written in C++.
 - Exact topic matching
 - Single-level wildcard (`*`) support
 - Trie-based lookup
+- Mutli-level wildcard ('#') support (matches zero or more words)

@@ -6,4 +6,5 @@
 struct TrieNode{
     std::unordered_map<std::string, TrieNode*> children;
     std::unordered_set<int> subscribers;
+    bool isHash{false};
 };
