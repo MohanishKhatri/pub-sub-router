@@ -52,17 +52,23 @@ void Router :: remove(std::vector<std::string> &topic, int subscriber){
 
 
 void Router ::  dfs(TrieNode* node, int index, std::vector<std::string> &tokens, std::unordered_set<int> &result){
-    if(node == nullptr || index >= tokens.size()){
+    if(node == nullptr){
         return;
     }
-    auto it = node->children.find(tokens[index]);
-    if(it != node->children.end()){
-        if(index == tokens.size() - 1){
-            result.insert(it->second->subscribers.begin(), it->second->subscribers.end());
+    if(index >= tokens.size()){
+        for(const auto &subscriber : node->subscribers){
+            result.insert(subscriber);
         }
-        else{
-            dfs(it->second, index + 1, tokens, result);
-        }
+        return;
+    }
+
+    auto exact_match_iterator = node->children.find(tokens[index]);
+    if(exact_match_iterator != node->children.end()){
+        dfs(exact_match_iterator->second, index + 1, tokens, result);
+    }
+    auto wildcard_match_iterator = node->children.find("*");
+    if(wildcard_match_iterator != node->children.end()){
+        dfs(wildcard_match_iterator->second, index + 1, tokens, result);
     }
 }
 

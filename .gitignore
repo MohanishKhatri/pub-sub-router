@@ -1,2 +1,4 @@
-.vscode
-app
+*app
+*test
+/tests
+.vscode/
